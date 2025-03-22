@@ -7,6 +7,6 @@ Forecastr is an advanced stock market prediction platform that uses machine lear
 <li>Sentiment analysis of financial news and social media</li>
 <li>Customizable technical indicators and analysis tools</li>
 <li>Performance tracking of predictions vs. actual market movements</li>
-<li>User portfolio management and personalized alerts</li>
+<li>User portfolio management and personalized alerts</li><br>
 
 Forecastr empowers investors with AI-driven insights while maintaining transparency about prediction confidence levels and underlying methodologies. Built with React, Python, and modern data science libraries, this project demonstrates the practical application of machine learning in financial markets.
