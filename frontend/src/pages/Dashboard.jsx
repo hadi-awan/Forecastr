@@ -1,5 +1,6 @@
 import { Grid, Typography, Box, Paper } from '@mui/material';
 import MarketOverviewCard from '../components/Widgets/MarketOverviewCard';
+import TopMoversCard from '../components/Widgets/TopMoversCard';
 
 const Dashboard = () => {
   return (
@@ -11,6 +12,11 @@ const Dashboard = () => {
         {/* Market Overview */}
         <Grid item xs={12} md={6} lg={3}>
           <MarketOverviewCard />
+        </Grid>
+
+        {/* Top Movers */}
+        <Grid item xs={12} md={6} lg={3}>
+          <TopMoversCard />
         </Grid>
     </Box>
   );
