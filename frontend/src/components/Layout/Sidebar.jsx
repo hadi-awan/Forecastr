@@ -2,18 +2,20 @@
 
 import { useState } from 'react';
 
+import { useNavigate, useLocation } from 'react-router-dom';
+
 // Material UI components used to construct sidebar layout and provide functionality
 import {
-  Drawer,
-  List,
-  Divider,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Collapse,
-  Box,
-  Typography
+    Drawer,
+    List,
+    Divider,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Collapse,
+    Box,
+    Typography
 } from '@mui/material';
 
 // Creating styled custom components
@@ -45,6 +47,12 @@ const LogoBox = styled(Box)(({ theme }) => ({
 // 4) News & Sentiment
 // 5) Section
 const Sidebar = ({ open, drawerWidth }) => {
+    // Provides a function to programmatically navigate to different routes
+    const navigate = useNavigate();
+
+    // Gives us access to the current URL path so we can highlight the active menu item
+    const location = useLocation();
+
     // Market Overview and Predictions items are initially open
     const [stocksOpen, setStocksOpen] = useState(true);
 
@@ -53,87 +61,113 @@ const Sidebar = ({ open, drawerWidth }) => {
         setStocksOpen(!stocksOpen);
     };
 
+    // uses the navigate function to route to different pages when menu items are clicked
+    const handleNavigation = (path) => {
+        navigate(path);
+    };
+
     // Component used to create sidebar, persistent drawer
+    // onClick handlers to each ListItemButton that call handleNavigation with the appropriate route path
+    // selected prop that highlights the current active route based on the current URL path
     const drawerContent = (
-        <>
-          <LogoBox>
-            <ShowChartIcon sx={{ mr: 1, color: 'primary.main' }} />
-            <Typography variant="h6" color="primary" fontWeight="bold">
-              Forecastr
-            </Typography>
-          </LogoBox>
-          <Divider />
-          <List>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-              </ListItemButton>
-            </ListItem>
+    <>
+      <LogoBox>
+        <ShowChartIcon sx={{ mr: 1, color: 'primary.main' }} />
+        <Typography variant="h6" color="primary" fontWeight="bold">
+          Forecastr
+        </Typography>
+      </LogoBox>
+      <Divider />
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton
+            onClick={() => handleNavigation('/')}
+            selected={location.pathname === '/'}
+          >
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItemButton>
+        </ListItem>
 
-            <ListItem disablePadding>
-              <ListItemButton onClick={handleStocksClick}>
-                <ListItemIcon>
-                  <ShowChartIcon />
-                </ListItemIcon>
-                <ListItemText primary="Stocks" />
-                {stocksOpen ? <ExpandLess /> : <ExpandMore />}
-              </ListItemButton>
-            </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleStocksClick}>
+            <ListItemIcon>
+              <ShowChartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Stocks" />
+            {stocksOpen ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+        </ListItem>
 
-            <Collapse in={stocksOpen} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                    <TrendingUpIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Market Overview" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                    <InsightsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Predictions" />
-                </ListItemButton>
-              </List>
-            </Collapse>
-
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <AccountBalanceIcon />
-                </ListItemIcon>
-                <ListItemText primary="Portfolio" />
-              </ListItemButton>
-            </ListItem>
-
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <NewspaperIcon />
-                </ListItemIcon>
-                <ListItemText primary="News & Sentiment" />
-              </ListItemButton>
-            </ListItem>
+        <Collapse in={stocksOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              onClick={() => handleNavigation('/market')}
+              selected={location.pathname === '/market'}
+            >
+              <ListItemIcon>
+                <TrendingUpIcon />
+              </ListItemIcon>
+              <ListItemText primary="Market Overview" />
+            </ListItemButton>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              onClick={() => handleNavigation('/predictions')}
+              selected={location.pathname === '/predictions'}
+            >
+              <ListItemIcon>
+                <InsightsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Predictions" />
+            </ListItemButton>
           </List>
+        </Collapse>
 
-          <Divider />
+        <ListItem disablePadding>
+          <ListItemButton
+            onClick={() => handleNavigation('/portfolio')}
+            selected={location.pathname === '/portfolio'}
+          >
+            <ListItemIcon>
+              <AccountBalanceIcon />
+            </ListItemIcon>
+            <ListItemText primary="Portfolio" />
+          </ListItemButton>
+        </ListItem>
 
-          <List>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <SettingsIcon />
-                </ListItemIcon>
-                <ListItemText primary="Settings" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </>
-      );
+        <ListItem disablePadding>
+          <ListItemButton
+            onClick={() => handleNavigation('/news')}
+            selected={location.pathname === '/news'}
+          >
+            <ListItemIcon>
+              <NewspaperIcon />
+            </ListItemIcon>
+            <ListItemText primary="News & Sentiment" />
+          </ListItemButton>
+        </ListItem>
+      </List>
 
+      <Divider />
+
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton
+            onClick={() => handleNavigation('/settings')}
+            selected={location.pathname === '/settings'}
+          >
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Settings" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </>
+  );
 
   return (
     <Drawer
