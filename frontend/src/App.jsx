@@ -6,7 +6,13 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Dashboard from './components/Layout/Dashboard';
 
 // Import pages to be created later
-const DashboardPage = () => <div>Dashboard Content</div>;
+import DashboardPage from './pages/Dashboard';
+const StockDetailPage = () => <div>Stock Detail Content</div>;
+const MarketOverviewPage = () => <div>Market Overview Content</div>;
+const PredictionsPage = () => <div>Predictions Content</div>;
+const PortfolioPage = () => <div>Portfolio Content</div>;
+const NewsPage = () => <div>News & Sentiment Content</div>;
+const SettingsPage = () => <div>Settings Content</div>;
 
 // Create theme
 const theme = createTheme({
@@ -54,6 +60,12 @@ function App() {
         <Dashboard>
           <Routes>
             <Route path="/" element={<DashboardPage />} />
+            <Route path="/stock/:symbol" element={<StockDetailPage />} />
+            <Route path="/market" element={<MarketOverviewPage />} />
+            <Route path="/predictions" element={<PredictionsPage />} />
+            <Route path="/portfolio" element={<PortfolioPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </Dashboard>
       </Router>
