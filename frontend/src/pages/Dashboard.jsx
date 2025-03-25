@@ -1,4 +1,5 @@
 import { Grid, Typography, Box, Paper } from '@mui/material';
+import StockPriceChart from '../components/Charts/StockPriceChart';
 import MarketOverviewCard from '../components/Widgets/MarketOverviewCard';
 import TopMoversCard from '../components/Widgets/TopMoversCard';
 
@@ -9,15 +10,22 @@ const Dashboard = () => {
         Dashboard
       </Typography>
 
-        {/* Market Overview */}
-        <Grid item xs={12} md={6} lg={3}>
-          <MarketOverviewCard />
-        </Grid>
+      <Grid container spacing={3}>
+            {/* Main Chart - Featured Stock */}
+            <Grid item xs={12} lg={8}>
+                <StockPriceChart />
+            </Grid>
 
-        {/* Top Movers */}
-        <Grid item xs={12} md={6} lg={3}>
-          <TopMoversCard />
-        </Grid>
+            {/* Market Overview */}
+            <Grid item xs={12} md={6} lg={3}>
+              <MarketOverviewCard />
+            </Grid>
+
+            {/* Top Movers */}
+            <Grid item xs={12} md={6} lg={3}>
+              <TopMoversCard />
+            </Grid>
+      </Grid>
     </Box>
   );
 };
