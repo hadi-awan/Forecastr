@@ -1,5 +1,6 @@
 import { Grid, Typography, Box, Paper } from '@mui/material';
 import StockPriceChart from '../components/Charts/StockPriceChart';
+import PredictionCard from '../components/Widgets/PredictionCard';
 import MarketOverviewCard from '../components/Widgets/MarketOverviewCard';
 import TopMoversCard from '../components/Widgets/TopMoversCard';
 
@@ -14,6 +15,11 @@ const Dashboard = () => {
             {/* Main Chart - Featured Stock */}
             <Grid item xs={12} lg={8}>
                 <StockPriceChart />
+            </Grid>
+
+            {/* Predictions for Featured Stock */}
+            <Grid item xs={12} lg={4}>
+              <PredictionCard />
             </Grid>
 
             {/* Market Overview */}
