@@ -3,6 +3,7 @@ import StockPriceChart from '../components/Charts/StockPriceChart';
 import PredictionCard from '../components/Widgets/PredictionCard';
 import MarketOverviewCard from '../components/Widgets/MarketOverviewCard';
 import TopMoversCard from '../components/Widgets/TopMoversCard';
+import WatchlistCard from '../components/Widgets/WatchlistCard';
 
 const Dashboard = () => {
   return (
@@ -30,6 +31,11 @@ const Dashboard = () => {
             {/* Top Movers */}
             <Grid item xs={12} md={6} lg={3}>
               <TopMoversCard />
+            </Grid>
+
+            {/* Watchlist */}
+            <Grid item xs={12} md={6} lg={3}>
+              <WatchlistCard />
             </Grid>
       </Grid>
     </Box>
