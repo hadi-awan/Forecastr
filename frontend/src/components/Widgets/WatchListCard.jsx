@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -24,8 +25,9 @@ import AddIcon from '@mui/icons-material/Add';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const WatchlistCard = () => {
+  const navigate = useNavigate();
   const [openAddDialog, setOpenAddDialog] = useState(false);
-  const [newSymbol, setNewSymbol] = useState('');
+  const [newSymbol, setNewSymbol] = useState(''); useState(false);
 
   // Mock watchlist data
   const [watchlistItems, setWatchlistItems] = useState([
@@ -63,6 +65,10 @@ const WatchlistCard = () => {
 
   const handleRemoveSymbol = (symbolToRemove) => {
     setWatchlistItems(watchlistItems.filter(item => item.symbol !== symbolToRemove));
+  };
+
+  const handleViewStock = (symbol) => {
+    navigate(`/stock/${symbol}`);
   };
 
   return (
@@ -116,7 +122,16 @@ const WatchlistCard = () => {
                   secondaryAction={
                     <Box>
                       <Tooltip title="View Details">
-                        <IconButton edge="end" aria-label="view" size="small" sx={{ mr: 1 }}>
+                        <IconButton
+                          edge="end"
+                          aria-label="view"
+                          size="small"
+                          sx={{ mr: 1 }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleViewStock(stock.symbol);
+                          }}
+                        >
                           <VisibilityIcon fontSize="small" />
                         </IconButton>
                       </Tooltip>

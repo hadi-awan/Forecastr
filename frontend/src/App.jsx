@@ -7,7 +7,7 @@ import Dashboard from './components/Layout/Dashboard';
 
 // Import pages to be created later
 import DashboardPage from './pages/Dashboard';
-const StockDetailPage = () => <div>Stock Detail Content</div>;
+import StockDetailPage from './pages/StockDetail';
 const MarketOverviewPage = () => <div>Market Overview Content</div>;
 const PredictionsPage = () => <div>Predictions Content</div>;
 const PortfolioPage = () => <div>Portfolio Content</div>;
