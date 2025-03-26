@@ -4,6 +4,8 @@ import PredictionCard from '../components/Widgets/PredictionCard';
 import MarketOverviewCard from '../components/Widgets/MarketOverviewCard';
 import TopMoversCard from '../components/Widgets/TopMoversCard';
 import WatchlistCard from '../components/Widgets/WatchlistCard';
+import NewsCard from '../components/Widgets/NewsCard';
+
 
 const Dashboard = () => {
   return (
@@ -36,6 +38,11 @@ const Dashboard = () => {
             {/* Watchlist */}
             <Grid item xs={12} md={6} lg={3}>
               <WatchlistCard />
+            </Grid>
+
+            {/* News */}
+            <Grid item xs={12} md={6} lg={3}>
+              <NewsCard />
             </Grid>
       </Grid>
     </Box>
